@@ -1,0 +1,227 @@
+
+Lab02:     file format elf64-littleaarch64
+
+
+Disassembly of section .init:
+
+0000000000000598 <_init>:
+ 598:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
+ 59c:	910003fd 	mov	x29, sp
+ 5a0:	9400002a 	bl	648 <call_weak_fn>
+ 5a4:	a8c17bfd 	ldp	x29, x30, [sp], #16
+ 5a8:	d65f03c0 	ret
+
+Disassembly of section .plt:
+
+00000000000005b0 <.plt>:
+ 5b0:	a9bf7bf0 	stp	x16, x30, [sp, #-16]!
+ 5b4:	90000090 	adrp	x16, 10000 <__FRAME_END__+0xf680>
+ 5b8:	f947fe11 	ldr	x17, [x16, #4088]
+ 5bc:	913fe210 	add	x16, x16, #0xff8
+ 5c0:	d61f0220 	br	x17
+ 5c4:	d503201f 	nop
+ 5c8:	d503201f 	nop
+ 5cc:	d503201f 	nop
+
+00000000000005d0 <__cxa_finalize@plt>:
+ 5d0:	b0000090 	adrp	x16, 11000 <__cxa_finalize@GLIBC_2.17>
+ 5d4:	f9400211 	ldr	x17, [x16]
+ 5d8:	91000210 	add	x16, x16, #0x0
+ 5dc:	d61f0220 	br	x17
+
+00000000000005e0 <__libc_start_main@plt>:
+ 5e0:	b0000090 	adrp	x16, 11000 <__cxa_finalize@GLIBC_2.17>
+ 5e4:	f9400611 	ldr	x17, [x16, #8]
+ 5e8:	91002210 	add	x16, x16, #0x8
+ 5ec:	d61f0220 	br	x17
+
+00000000000005f0 <__gmon_start__@plt>:
+ 5f0:	b0000090 	adrp	x16, 11000 <__cxa_finalize@GLIBC_2.17>
+ 5f4:	f9400a11 	ldr	x17, [x16, #16]
+ 5f8:	91004210 	add	x16, x16, #0x10
+ 5fc:	d61f0220 	br	x17
+
+0000000000000600 <abort@plt>:
+ 600:	b0000090 	adrp	x16, 11000 <__cxa_finalize@GLIBC_2.17>
+ 604:	f9400e11 	ldr	x17, [x16, #24]
+ 608:	91006210 	add	x16, x16, #0x18
+ 60c:	d61f0220 	br	x17
+
+Disassembly of section .text:
+
+0000000000000610 <_start>:
+ 610:	d280001d 	mov	x29, #0x0                   	// #0
+ 614:	d280001e 	mov	x30, #0x0                   	// #0
+ 618:	aa0003e5 	mov	x5, x0
+ 61c:	f94003e1 	ldr	x1, [sp]
+ 620:	910023e2 	add	x2, sp, #0x8
+ 624:	910003e6 	mov	x6, sp
+ 628:	90000080 	adrp	x0, 10000 <__FRAME_END__+0xf680>
+ 62c:	f947ec00 	ldr	x0, [x0, #4056]
+ 630:	90000083 	adrp	x3, 10000 <__FRAME_END__+0xf680>
+ 634:	f947e863 	ldr	x3, [x3, #4048]
+ 638:	90000084 	adrp	x4, 10000 <__FRAME_END__+0xf680>
+ 63c:	f947d884 	ldr	x4, [x4, #4016]
+ 640:	97ffffe8 	bl	5e0 <__libc_start_main@plt>
+ 644:	97ffffef 	bl	600 <abort@plt>
+
+0000000000000648 <call_weak_fn>:
+ 648:	90000080 	adrp	x0, 10000 <__FRAME_END__+0xf680>
+ 64c:	f947e400 	ldr	x0, [x0, #4040]
+ 650:	b4000040 	cbz	x0, 658 <call_weak_fn+0x10>
+ 654:	17ffffe7 	b	5f0 <__gmon_start__@plt>
+ 658:	d65f03c0 	ret
+ 65c:	d503201f 	nop
+
+0000000000000660 <deregister_tm_clones>:
+ 660:	b0000080 	adrp	x0, 11000 <__cxa_finalize@GLIBC_2.17>
+ 664:	9102c000 	add	x0, x0, #0xb0
+ 668:	b0000081 	adrp	x1, 11000 <__cxa_finalize@GLIBC_2.17>
+ 66c:	9102c021 	add	x1, x1, #0xb0
+ 670:	eb00003f 	cmp	x1, x0
+ 674:	540000a0 	b.eq	688 <deregister_tm_clones+0x28>  // b.none
+ 678:	90000081 	adrp	x1, 10000 <__FRAME_END__+0xf680>
+ 67c:	f947dc21 	ldr	x1, [x1, #4024]
+ 680:	b4000041 	cbz	x1, 688 <deregister_tm_clones+0x28>
+ 684:	d61f0020 	br	x1
+ 688:	d65f03c0 	ret
+ 68c:	d503201f 	nop
+
+0000000000000690 <register_tm_clones>:
+ 690:	b0000080 	adrp	x0, 11000 <__cxa_finalize@GLIBC_2.17>
+ 694:	9102c000 	add	x0, x0, #0xb0
+ 698:	b0000081 	adrp	x1, 11000 <__cxa_finalize@GLIBC_2.17>
+ 69c:	9102c021 	add	x1, x1, #0xb0
+ 6a0:	cb000021 	sub	x1, x1, x0
+ 6a4:	9343fc21 	asr	x1, x1, #3
+ 6a8:	8b41fc21 	add	x1, x1, x1, lsr #63
+ 6ac:	9341fc21 	asr	x1, x1, #1
+ 6b0:	b40000a1 	cbz	x1, 6c4 <register_tm_clones+0x34>
+ 6b4:	90000082 	adrp	x2, 10000 <__FRAME_END__+0xf680>
+ 6b8:	f947f042 	ldr	x2, [x2, #4064]
+ 6bc:	b4000042 	cbz	x2, 6c4 <register_tm_clones+0x34>
+ 6c0:	d61f0040 	br	x2
+ 6c4:	d65f03c0 	ret
+
+00000000000006c8 <__do_global_dtors_aux>:
+ 6c8:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+ 6cc:	910003fd 	mov	x29, sp
+ 6d0:	f9000bf3 	str	x19, [sp, #16]
+ 6d4:	b0000093 	adrp	x19, 11000 <__cxa_finalize@GLIBC_2.17>
+ 6d8:	3942b660 	ldrb	w0, [x19, #173]
+ 6dc:	35000140 	cbnz	w0, 704 <__do_global_dtors_aux+0x3c>
+ 6e0:	90000080 	adrp	x0, 10000 <__FRAME_END__+0xf680>
+ 6e4:	f947e000 	ldr	x0, [x0, #4032]
+ 6e8:	b4000080 	cbz	x0, 6f8 <__do_global_dtors_aux+0x30>
+ 6ec:	b0000080 	adrp	x0, 11000 <__cxa_finalize@GLIBC_2.17>
+ 6f0:	f9401400 	ldr	x0, [x0, #40]
+ 6f4:	97ffffb7 	bl	5d0 <__cxa_finalize@plt>
+ 6f8:	97ffffda 	bl	660 <deregister_tm_clones>
+ 6fc:	52800020 	mov	w0, #0x1                   	// #1
+ 700:	3902b660 	strb	w0, [x19, #173]
+ 704:	f9400bf3 	ldr	x19, [sp, #16]
+ 708:	a8c27bfd 	ldp	x29, x30, [sp], #32
+ 70c:	d65f03c0 	ret
+
+0000000000000710 <frame_dummy>:
+ 710:	17ffffe0 	b	690 <register_tm_clones>
+
+0000000000000714 <main>:
+ 714:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
+ 718:	910003fd 	mov	x29, sp
+ 71c:	94000005 	bl	730 <test>
+ 720:	9400000e 	bl	758 <lab02b>
+ 724:	52800000 	mov	w0, #0x0                   	// #0
+ 728:	a8c17bfd 	ldp	x29, x30, [sp], #16
+ 72c:	d65f03c0 	ret
+
+0000000000000730 <test>:
+ 730:	b0000080 	adrp	x0, 11000 <__cxa_finalize@GLIBC_2.17>
+ 734:	9100c000 	add	x0, x0, #0x30
+ 738:	50084841 	adr	x1, 11042 <msg2>
+ 73c:	b0000086 	adrp	x6, 11000 <__cxa_finalize@GLIBC_2.17>
+ 740:	910178c6 	add	x6, x6, #0x5e
+ 744:	384000c2 	ldurb	w2, [x6]
+ 748:	788010c3 	ldursh	x3, [x6, #1]
+ 74c:	b88030c4 	ldursw	x4, [x6, #3]
+ 750:	f84070c5 	ldur	x5, [x6, #7]
+ 754:	d61f03c0 	br	x30
+
+0000000000000758 <lab02b>:
+ 758:	b0000080 	adrp	x0, 11000 <__cxa_finalize@GLIBC_2.17>
+ 75c:	9101a400 	add	x0, x0, #0x69
+ 760:	38403001 	ldurb	w1, [x0, #3]
+ 764:	51008021 	sub	w1, w1, #0x20
+ 768:	38003001 	sturb	w1, [x0, #3]
+
+000000000000076c <nomodify>:
+ 76c:	d61f03c0 	br	x30
+
+0000000000000770 <lab02c>:
+ 770:	b0000083 	adrp	x3, 11000 <__cxa_finalize@GLIBC_2.17>
+ 774:	91020c63 	add	x3, x3, #0x83
+ 778:	b0000085 	adrp	x5, 11000 <__cxa_finalize@GLIBC_2.17>
+ 77c:	9102b0a5 	add	x5, x5, #0xac
+ 780:	d344fc01 	lsr	x1, x0, #4
+ 784:	8b030022 	add	x2, x1, x3
+ 788:	38400044 	ldurb	w4, [x2]
+ 78c:	380000a4 	sturb	w4, [x5]
+ 790:	92400c01 	and	x1, x0, #0xf
+ 794:	8b010062 	add	x2, x3, x1
+ 798:	38400044 	ldurb	w4, [x2]
+ 79c:	380010a4 	sturb	w4, [x5, #1]
+ 7a0:	d61f03c0 	br	x30
+
+00000000000007a4 <lab02d>:
+ 7a4:	910fa000 	add	x0, x0, #0x3e8
+ 7a8:	b0000082 	adrp	x2, 11000 <__cxa_finalize@GLIBC_2.17>
+ 7ac:	9102b442 	add	x2, x2, #0xad
+ 7b0:	b8000041 	stur	w1, [x2]
+ 7b4:	8b1f0040 	add	x0, x2, xzr
+ 7b8:	d61f03c0 	br	x30
+ 7bc:	d503201f 	nop
+
+00000000000007c0 <__libc_csu_init>:
+ 7c0:	a9bc7bfd 	stp	x29, x30, [sp, #-64]!
+ 7c4:	910003fd 	mov	x29, sp
+ 7c8:	a90153f3 	stp	x19, x20, [sp, #16]
+ 7cc:	90000094 	adrp	x20, 10000 <__FRAME_END__+0xf680>
+ 7d0:	91370294 	add	x20, x20, #0xdc0
+ 7d4:	a9025bf5 	stp	x21, x22, [sp, #32]
+ 7d8:	90000095 	adrp	x21, 10000 <__FRAME_END__+0xf680>
+ 7dc:	9136e2b5 	add	x21, x21, #0xdb8
+ 7e0:	cb150294 	sub	x20, x20, x21
+ 7e4:	2a0003f6 	mov	w22, w0
+ 7e8:	a90363f7 	stp	x23, x24, [sp, #48]
+ 7ec:	aa0103f7 	mov	x23, x1
+ 7f0:	aa0203f8 	mov	x24, x2
+ 7f4:	9343fe94 	asr	x20, x20, #3
+ 7f8:	97ffff68 	bl	598 <_init>
+ 7fc:	b4000174 	cbz	x20, 828 <__libc_csu_init+0x68>
+ 800:	d2800013 	mov	x19, #0x0                   	// #0
+ 804:	d503201f 	nop
+ 808:	f8737aa3 	ldr	x3, [x21, x19, lsl #3]
+ 80c:	aa1803e2 	mov	x2, x24
+ 810:	91000673 	add	x19, x19, #0x1
+ 814:	aa1703e1 	mov	x1, x23
+ 818:	2a1603e0 	mov	w0, w22
+ 81c:	d63f0060 	blr	x3
+ 820:	eb13029f 	cmp	x20, x19
+ 824:	54ffff21 	b.ne	808 <__libc_csu_init+0x48>  // b.any
+ 828:	a94153f3 	ldp	x19, x20, [sp, #16]
+ 82c:	a9425bf5 	ldp	x21, x22, [sp, #32]
+ 830:	a94363f7 	ldp	x23, x24, [sp, #48]
+ 834:	a8c47bfd 	ldp	x29, x30, [sp], #64
+ 838:	d65f03c0 	ret
+ 83c:	d503201f 	nop
+
+0000000000000840 <__libc_csu_fini>:
+ 840:	d65f03c0 	ret
+
+Disassembly of section .fini:
+
+0000000000000844 <_fini>:
+ 844:	a9bf7bfd 	stp	x29, x30, [sp, #-16]!
+ 848:	910003fd 	mov	x29, sp
+ 84c:	a8c17bfd 	ldp	x29, x30, [sp], #16
+ 850:	d65f03c0 	ret
